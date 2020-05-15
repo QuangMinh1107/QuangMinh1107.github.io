@@ -40,6 +40,7 @@ p:hover{
     padding: 10px;
 }
 .outer .pic{
+    position: relative;
     float:left;
     margin-right:20px;
     border-right: 1px double black;
@@ -48,4 +49,16 @@ p:hover{
 .outer .spec ul{
     list-style-type: none;
 }
-
+.back{
+    bottom: -20px;
+    left: 20px;
+    display: block;
+    margin-top: 20px;
+}
+.back a{
+    text-decoration: none;
+}
+.back a:hover{
+    color: blue;
+    text-decoration: underline;
+}
