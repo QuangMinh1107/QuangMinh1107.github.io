@@ -62,3 +62,8 @@ p:hover{
     color: blue;
     text-decoration: underline;
 }
+.clearfix:after{
+    clear: both;
+    content: "";
+    display: table;
+}
