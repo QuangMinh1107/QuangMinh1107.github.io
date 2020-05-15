@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color:black;
+}
+.container{
+    margin: 10px;
+    
+}
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.items{
+    margin-top: 20px;
+    padding-left: 10%;
+}
+.items .pic{
+    float: left;
+    margin: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.pic img{
+    max-width: 300px;
+}
+.pic p{
+    padding-top: 5px;
+    text-align: center;
+}
+.pic a{
+    text-decoration: none;
+}
+p:hover{
+    color: blue;
+}
+.outer{
+    padding: 10px;
+}
+.outer .pic{
+    float:left;
+    margin-right:20px;
+    border-right: 1px double black;
+    padding-right: 5px;
+}
+.outer .spec ul{
+    list-style-type: none;
+}
+
