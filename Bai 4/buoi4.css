@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.nav-bar{
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background: #ed1c24;
+    z-index: 9999;
+}
+.nav-bar>*{
+    display: block;
+    float: left;
+    margin-left: 20px;
+}
+.nav-list{
+    margin: 30px 15px;
+    padding: 5px;
+}
+
+.logo .img{
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
+    position: relative;
+}
+
+.nav-list >*{
+    display: block;
+    float:left;
+    margin-left: 50px;
+    font-size: 1.2em;
+    color: white;
+    padding: 5px;
+}
+
+.nav-list input{
+    width: 350px;
+    padding: 2px;
+    color: black;
+}
+span a{
+    text-decoration: none;
+    color: white;
+}
+.nav-list input:hover{
+    background:lavender;
+}
+.banner{
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+.banner p{
+    height: 20px;
+    width: 1160px;
+    background: rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.content{
+    display: block;
+    margin: 130px 100px;
+    width: 1180px;
+    border-top: 1px solid black;
+}
+.content .items{
+    display:block;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+.items p{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #ed1c24;
+}
+.item-list{
+    display: block;
+    width: 100%;
+    margin-left:20px;
+}
+
+.item-list .item{
+    display: block;
+    float: left;
+    width: 18%;
+    margin-right: 10px;
+}
+.item:hover{
+    background-color: rgba(0,0,0,0.1);
+    color: #ed1c24;
+}
+.item>*{
+    display: block;
+}
+.item img{
+    padding: 5px 10px 5px 10px;
+}
+.item span{
+    padding-left: 30px;
+}
+
+.footer{
+    display: block;
+    margin: 10px 100px;
+    
+}
+
+.footer .detail{
+    display: block;
+    float: left;
+    width: 30%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    margin-left:10px;
+    border-radius: 20px;
+    background-color: #8b8b8b;
+    color: white;
+}
+
+.clearfix:after{
+    clear: both;
+    content: "";
+    display: table;
+}
