@@ -6,8 +6,12 @@ body{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .nav-bar{
-    position: fixed;
+    /* Su dung fixed */
+    position: fixed; 
+    top:0;
+    left:0;
     width: 100%;
     height: 100px;
     background: #ed1c24;
@@ -52,12 +56,32 @@ span a{
     background:lavender;
 }
 .banner{
+    /* Su dung position relative */
     position: relative;
     top: 100px;
     left: 100px;
 }
+.banner img{
+    display: block;
+    z-index: 0;
+}
+.banner img:nth-child(2){
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.banner img:first-child{
+    transition: opacity 0.5s ease-in-out;
+}
+.banner img:first-child:hover{
+    opacity: 0;
+}
+
 .banner p{
-    height: 20px;
+    /* Su dung position absolute */
+    position: absolute;
+    bottom: -40px;
     width: 1160px;
     background: rgba(0,0,0,0.1);
     padding: 10px;
@@ -66,7 +90,7 @@ span a{
 }
 .content{
     display: block;
-    margin: 130px 200px;
+    margin: 160px 200px;
     width: 1180px;
 }
 .content .items{
@@ -84,6 +108,7 @@ span a{
     display: block;
     width: 100%;
     margin-left:20px;
+    
 }
 
 .item-list .item{
@@ -91,9 +116,11 @@ span a{
     float: left;
     width: 18%;
     margin-right: 10px;
+    transition:box-shadow 0.4s ease-in-out;
+    transition: color 0.5s ease-in;
 }
 .item:hover{
-    background-color: rgba(0,0,0,0.1);
+    box-shadow: 10px 10px 5px #aaaaaa;
     color: #ed1c24;
 }
 .item>*{
@@ -124,7 +151,14 @@ span a{
     background-color: #8b8b8b;
     color: white;
 }
-
+.btn-top{
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width:50px;
+    background-color: grey;
+    color: white;
+}
 .clearfix:after{
     clear: both;
     content: "";
