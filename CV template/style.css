@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+.container{
+    width: 1200px;
+    margin: 10px auto;
+}
+.pic{
+    float: left;
+    margin: 10px 50px;
+    border-right: 2px solid black;
+}
+.pic img{
+    width: 200px;
+    height: auto;
+}
+.detail{
+    float: left;
+    margin-top: 20px;
+}
+.profile{
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+h1{
+    text-transform: uppercase;
+    transition: all 0.4s ease-in-out;
+}
+h1:hover{
+    background-color: lightseagreen;
+    color: white;
+}
+.education{
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.education ul{
+    list-style-type: none;
+}
+
+.work-history{
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.work-history ul li{
+    margin-left: 20px;
+}
+
+.skills{
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.skills .line1, .skills .line2 {
+    margin-bottom: 20px;
+} 
+.skills p{
+    float: left;
+    width: 45%;
+    margin-right: 20px;
+}
+.interests{
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.interests p{
+    margin-top: 20px;
+}
+.references{
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.references h1{
+    margin-bottom: 20px;
+}
+.references .person1, .references .person2{
+    float: left;
+    width: 45%;
+    margin-right: 50px;
+}
+blockquote{
+    transition: all linear 0.4s;
+}
+blockquote:hover{
+    font-style: oblique;
+}
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
