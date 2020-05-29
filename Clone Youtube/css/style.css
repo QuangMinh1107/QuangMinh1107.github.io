@@ -1,0 +1,31 @@
+.sidebar{
+    width: 250px;
+    height: auto;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    transition: all ease-in 0.4s;
+}
+.sidebar:hover{
+    overflow-y: scroll;
+}
+.sidebar a:hover{
+    background-color: rgba(0,0,0,0.2);
+    text-decoration: none;
+    
+}
+
+.sidebar .best-channel ul{
+    list-style-type: none;
+    color: black;
+}
+
+.content{
+    margin-top: 80px;
+    margin-left: 250px;
+    
+}
+
+.recommend h4{
+    padding-top: 15px;
+}
