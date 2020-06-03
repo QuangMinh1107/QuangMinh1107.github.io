@@ -2,7 +2,7 @@
     width: 250px;
     height: auto;
     position: fixed;
-    top: 50px;
+    top: 80px;
     bottom: 0;
     transition: all ease-in 0.4s;
 }
@@ -23,7 +23,7 @@
 .content{
     margin-top: 80px;
     margin-left: 250px;
-    
+    margin-right:10px;
 }
 
 .recommend h4{
