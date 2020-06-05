@@ -1,0 +1,54 @@
+.container .navbar-brand{
+    display: flex;
+    
+}
+.navbar-brand h4{
+    align-self: center;
+    padding-left: 5px;
+}
+
+.text-form {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+a:hover, a:visited {
+    color: black;
+}
+
+.news {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.news img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.line {
+    display: flex;
+}
+
+.line .pic {
+    flex: 1 1 0;
+    width: 0;
+}
+
+.line img {
+    max-width: 100%;
+}
+
+.left-user img{
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+}
