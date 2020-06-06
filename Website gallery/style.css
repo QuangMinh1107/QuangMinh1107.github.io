@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+
+body{
+    background-color: lavender;
+}
+.container{
+    margin:10px auto;
+    width: 80%;
+}
+
+header{
+    margin:20px 10px 25px;
+}
+
+header h1{
+    text-align: center; 
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: darkorange;
+}
+header nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 25px;
+}
+header nav a{
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #bd68c5;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+nav a:hover{
+    color: black;
+    font-size: 1.2rem;
+}
+
+
+.content h3{
+    margin: 20px 15px;
+    transition: all 0.4s ease-in-out;
+}
+
+.content h3:hover{
+    color: darkorange;
+    margin-left: 25px;
+    font-size: 1.2em;
+}
+
+.content .eu, .content .america{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+   
+}
+.eu .pic, .america .pic{
+    flex:1;
+    margin:15px;
+    text-align: center;
+    
+}
+.pic a{
+    text-decoration: none;
+    color: black;
+}
+
+.pic a p{
+    padding-top: 5px;
+}
+
+.pic a img{
+    border-radius: 15px;
+    transition: all 0.5s ease-in-out;
+}
+.pic a img:hover{
+    transform: scale(1.1);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+}
+

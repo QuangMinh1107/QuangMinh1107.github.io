@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type = "image/png" href="./icons8-sun-48.png">
+    <link rel="stylesheet" href="./detail1.css">
+    <title>KIRKJUFELL</title>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="detail">
+            <h1>KIRKJUFELL MOUNTAIN</h1>
+            <section>
+                <p>Grundarfjörður's beautiful landmark is the most photographed mountain in Iceland. Its isolated
+                    position jutting out into the sea makes it a focal point for tourists and seamen alike.
+                </p>
+                <p>
+                    Kirkjufell (Church Mountain) is 463 meters high and visible from all angles in town.Grundarfjörður
+                    is the ideal place to enjoy the amazing colours of the sunset behind the mountain.
+                </p>
+                <div class="img-gallery">
+                    <img alt="KIRKJUFELL MOUNTAIN">
+                </div>
+                <div class="img-selection">
+                    <div class="pic">
+                        <img src="https://res.cloudinary.com/itb-database/image/upload/v1/Places/6c11074faf8fb718127737f214f5f04d"
+                            alt="pic1">
+                    </div>
+                    <div class="pic">
+                        <img src="https://res.cloudinary.com/itb-database/image/upload/v1/Places/3ee2dce253fda88af4bfc51f44c0d353"
+                            alt="pic2">
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <div class="map">
+            <div class="map-img">
+                <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=7&size=348x287&label=Kirkjufell+mountain&center=64.94072339013200%2C-23.30629262348900&sensor=false&markers=color%3Ared%7C64.94072339013200%2C-23.30629262348900&key=AIzaSyCziEtxH2zLc6N-rVwdZo7Zz7XDVaIq5ug"
+                    alt="google map">
+            </div>
+            <div class="location">
+                <p>
+                    KIRKJUFELL MOUNTAIN
+                    GPS POINTS N64° 56' 26.604" W23° 18' 22.653"
+                </p>
+            </div>
+            <div class="location">
+                <p>POSTAL CODE 350</p>
+            </div>
+            <div class="location">
+                <p>ROAD NUMBER 54</p>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        var img = document.querySelector(".img-gallery img");
+        var images = document.querySelectorAll(".pic img");
+        img.src = images[0].src;
+        for (var i = 0; i < images.length; i++) {
+            images[i].addEventListener("click", function () {
+                img.src = this.src;
+            });
+        }
+    </script>
+</body>
+
+</html>

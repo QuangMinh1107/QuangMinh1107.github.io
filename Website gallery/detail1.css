@@ -1,0 +1,63 @@
+/* Style for iceland */
+body{
+    background: lavender;
+}
+img{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+
+.outer{
+    margin: 10px auto;
+    width: 900px;
+    display: flex;
+}
+
+.detail{
+    flex: 0 0 600px;
+    margin-top: 10px;
+}
+.map{
+    flex: 0 0 300px;
+    height: 580px;
+    margin-top: 90px;
+    margin-left: 30px;
+    background-color: white;
+    
+}
+
+section {
+    background: white;
+}
+section p{
+    padding: 10px;
+}
+
+.img-selection{
+    display:flex;
+}
+
+.img-selection img{
+    flex: 1;
+    cursor: pointer;
+}
+
+.map .map-img{
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.map .location{
+    height: 90px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.location p{
+    padding: 20px 5px;
+}
+
+
+
+
+
