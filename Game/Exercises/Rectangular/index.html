@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myCanvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id = "myCanvas"></canvas>
+</body>
+<script>
+    //Khai bao va dinh kich thuoc 
+    var canvas = document.getElementById("myCanvas");
+    var c = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    
+    //Chinh kich thuoc theo cua so
+    addEventListener("resize",()=>{
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    });
+
+    //Tao lop Square gom  2 hinh vuong
+    class Square {
+        constructor(len){
+            this.len = len;
+        }
+        draw(){
+            c.beginPath();
+            var centerX = canvas.width/2;
+            var centerY = canvas.height/2;
+            c.fillStyle = '#4472C4';
+            c.fillRect(centerX-this.len/2,centerY-this.len/2,this.len,this.len);
+            
+            c.beginPath();
+            c.fillStyle = "white";
+            c.moveTo(centerX,centerY-this.len/2);
+            c.lineTo(centerX + this.len/2, centerY);
+            c.lineTo(centerX, centerY + this.len/2);
+            c.lineTo(centerX-this.len/2,centerY);
+            c.lineTo(centerX,centerY-this.len/2);
+            c.fill();
+        }
+    }
+    
+
+    // Khai bao mang va them phan tu
+    var squares = [];
+    for(var i=0;i<5;i++)
+    {
+        var square = new Square(400/Math.pow(2,i));
+        squares.push(square);
+    }
+
+    //Chay chuong trinh
+    function animate(){
+        requestAnimationFrame(animate);
+        c.clearRect(0,0,canvas.width,canvas.height);
+        for(var i=0;i<squares.length;i++){
+            squares[i].draw();
+        }
+    }
+    animate()
+
+;</script>
+</html>
