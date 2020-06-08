@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="ball_hit">
+        <source src="ball.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+
+        //Tao canvas
+        const canvas = document.getElementById("canvas");
+        const c = canvas.getContext('2d');
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        let score = 0; // Khoi tao diem
+
+        //Tao lop Ball
+        class Ball {
+            constructor(radius, color, x, y, dy) {
+                this.radius = radius;
+                this.color = color;
+                this.x = x;
+                this.y = y;
+                this.dy = dy;
+            }
+
+            draw() {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fillStyle = this.color;
+                c.fill();
+                c.closePath();
+            }
+            move() {
+                this.dy = randomIntFromRange(1, 5);
+                this.y -= this.dy; //Chuyển động tịnh tiến đều từ trái sang phải
+                if (this.y - this.radius <= 0) {
+                    //nếu vượt quá cạnh phải màn hình thì quay lại từ cạnh bên trái
+                    this.y = canvas.height - this.radius;
+                    this.x = randomIntFromRange(0, canvas.width);
+                }
+                this.draw();
+            }
+        }
+        
+        balls = [];
+
+        // Su kien khi click chuot de no bong bay
+        addEventListener('click', (event) => {
+            var x = randomIntFromRange(0, canvas.width);
+            let radius = randomIntFromRange(10,50);
+            let ball = new Ball(radius, rgb(), x, canvas.height);
+            balls.push(ball)
+
+            let i = balls.length;
+            while (i--) {
+                let ball = balls[i];
+                if (
+                    Math.pow((event.clientX - ball.x), 2) +
+                    Math.pow((event.clientY - ball.y), 2) < Math.pow(ball.radius, 2)) {
+                    let x = document.getElementById("ball_hit");
+                    x.play();
+                    balls.splice(i, 1);
+                    score++;
+                    if (balls.length != 0) {
+                        for (let b of balls)
+                            b.move();
+                    }
+                }
+            }
+
+        });
+
+        //Hoat dong bong bay len va ghi diem
+        function animate() {
+            requestAnimationFrame(animate);
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            balls.forEach(ball => ball.move());
+            c.font = "20px Arial";
+            c.fillStyle = 'black';
+            c.textAlign = 'center';
+            c.fillText("Your score: " + score, canvas.width * 0.5, 20); //GHi lai diem
+        }
+        animate();
+
+        //Tao mau ngau nhien
+        function rgb() {
+            color = 'rgb(';
+            for (var i = 0; i < 3; i++) {
+                color += Math.floor(Math.random() * 255) + ',';
+            }
+            return color.replace(/\,$/, ')');
+        }
+        //Tao so nguyen ngau nhien
+        function randomIntFromRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+    </script>
+</body>
+
+</html>
