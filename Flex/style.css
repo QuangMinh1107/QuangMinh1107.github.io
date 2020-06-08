@@ -6,6 +6,7 @@
 img{
     display: block;
     max-width: 100%;
+    height: auto;
     margin: auto;
 }
 
@@ -13,11 +14,13 @@ body{
     background-color: #f2f2f2;
     height: 100vh;
     font-family: "Roboto";
+    overflow-x: hidden;
 }
 
 nav{
     display: flex;
-    margin: 0px auto 25px; 
+    padding: 5px;
+    margin:0;
     background-color: #fff;
     align-items: center;
     height: 50px;
@@ -81,7 +84,7 @@ header{
     display: flex;
     justify-content:space-between;
     align-items: center;
-    margin: 20px 92px;
+    margin: 20px 30px;
 }
 header .left{
     display: flex;
@@ -96,6 +99,7 @@ header .left{
 }
 header .right{
     display: flex;
+    margin-right: -20px;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 50px;
 }
@@ -129,11 +133,11 @@ header .right{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin: auto;
+    margin: 20px 10px;
     justify-content: center;
 }
 .card{
-    width: 304px;
+    flex: 1 0 20%;
     background: #fff;
     padding: 16px;
     margin: 20px;
@@ -209,6 +213,9 @@ span{
     font-size: 14px;;
     color: #98A0A6;
 }
-.card-footer button:hover .btn-name, .card-footer button:hover .btn-view{
+.card-footer button:hover .btn-name{
+    color: #fff;
+}
+.card-footer .btn-view:hover{
     color: #fff;
 }
