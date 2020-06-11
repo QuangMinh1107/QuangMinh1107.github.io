@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("canvas");
+    let c = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    // Change the canvas size when resize windows
+    addEventListener("resize", () => {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    });
+
+    //Make the Rectangle class
+    class Rectangle {
+        constructor(color, factor) {
+            this.color = color;
+            this.factor = factor; //size factor 
+            this.width = this.factor * canvas.width;
+            this.height = this.factor * canvas.height;
+        }
+        draw() {
+            let x = canvas.width / 2 - this.width / 2;
+            let y = canvas.height / 2 - this.height / 2;
+
+            //draw the rectangle
+            c.beginPath();
+            c.lineWidth = 2;
+            c.strokeStyle = this.color;
+            c.rect(x, y, this.width, this.height);
+            c.stroke();
+
+            //draw the cross line
+            c.beginPath();
+            c.strokeStyle = 'green';
+            c.moveTo(x, y);
+            c.lineTo(x + this.width, y + this.height);
+            c.moveTo(x + this.width, y);
+            c.lineTo(x, y + this.height);
+            c.stroke();
+        }
+    }
+
+    //run the program
+    function animate() {
+        requestAnimationFrame(animate);
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        let rec = new Rectangle('black', 0.9);
+        rec.draw();
+    }
+    animate();
+</script>
+
+</html>

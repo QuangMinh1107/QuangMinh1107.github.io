@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("canvas");
+    let c = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    // Change the canvas size when resize windows
+    addEventListener("resize", () => {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    });
+
+    //Make the Point class
+    class Point{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    //Make the Triangle class
+    class Triangle{
+        constructor(p1,p2,p3){
+            this.p1 = p1;
+            this.p2 = p2;
+            this.p3 = p3;
+        }
+        draw(){
+            //Draw the triangle
+            c.beginPath();
+            c.strokeStyle = 'black';
+            c.setLineDash([]);
+            c.moveTo(this.p1.x,this.p1.y);
+            c.lineTo(this.p2.x,this.p2.y);
+            c.lineTo(this.p3.x,this.p3.y);
+            c.closePath();
+            c.stroke();
+
+            //Draw the lines
+            c.beginPath();
+            c.strokeStyle = ' blue';
+            c.setLineDash([5, 3]);
+            c.moveTo(this.p1.x,this.p1.y);
+            c.lineTo((this.p2.x+this.p3.x)/2,(this.p2.y+this.p3.y)/2);
+            c.moveTo(this.p2.x,this.p2.y);
+            c.lineTo((this.p1.x+this.p3.x)/2,(this.p1.y+this.p3.y)/2);
+            c.moveTo(this.p3.x,this.p3.y);
+            c.lineTo((this.p1.x+this.p2.x)/2,(this.p1.y+this.p2.y)/2);
+            c.stroke();
+        }
+    }
+
+    
+    //Run the program
+    function animate(){
+        requestAnimationFrame(animate);
+        c.clearRect(0,0,canvas.width,canvas.height);
+        let p1 = new Point(canvas.width/2, canvas.height/4);
+        let p2 = new Point(canvas.width/5, canvas.height*3/4);
+        let p3 = new Point(canvas.width*2/3, canvas.height*3/4);
+        let tr = new Triangle(p1,p2,p3);
+        tr.draw();
+    }
+    animate();
+</script>
+</html>

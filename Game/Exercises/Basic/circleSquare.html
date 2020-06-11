@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("canvas");
+    let c = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    // Change the canvas size when resize windows
+    addEventListener("resize",()=>{
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    });
+
+    //Make the Square class
+    class Square {
+        constructor(len, color) {
+            this.len = len;
+            this.color = color;
+        }
+        draw() {
+            let centerX = canvas.width / 2;
+            let centerY = canvas.height / 2;
+            c.beginPath();
+            c.fillStyle = this.color;
+            c.fillRect(centerX - this.len / 2, centerY - this.len / 2, this.len, this.len);
+        }
+    }
+
+    //Make the circle class
+    class Circle {
+        constructor(color, radius) {
+            this.color = color;
+            this.radius = radius;
+        }
+        draw() {
+            c.beginPath();
+            let centerX = canvas.width / 2;
+            let centerY = canvas.height / 2;
+            c.fillStyle = this.color;
+            c.arc(centerX, centerY, this.radius, 0, Math.PI * 2, true);
+            c.fill();
+        }
+    }
+
+    //Make the array of Square and Circle class
+    let squares = [];
+    let circles = []
+    for(let i = 0;i<3;i++){
+        let circle = new Circle(rgb(),200/(Math.pow(Math.sqrt(2),i)));
+        circles.push(circle);
+        let square = new Square(400/Math.sqrt(2)/(Math.pow(Math.sqrt(2),i)),rgb());
+        squares.push(square);
+    }
+  
+    //Make the circles and squares manually
+    // let c0 = new Circle('orange',200);
+    // let c1 = new Circle('lightgreen',200/Math.sqrt(2));
+    // let c2 = new Circle('white',200/2);
+    // circles.push(c0);
+    // circles.push(c1);
+    // circles.push(c2);
+
+    // let s0 = new Square(400/Math.sqrt(2),'dodgerblue');
+    // let s1 = new Square(400/2,'red');
+    // squares.push(s0);
+    // squares.push(s1);
+
+    function animate(){
+        requestAnimationFrame(animate);
+        c.clearRect(0,0,canvas.width,canvas.height);
+        let i = 0;
+        for(i=0;i<2;i++)
+        {
+            circles[i].draw();
+            squares[i].draw();
+        }
+        circles[i].draw();
+    }
+
+    animate();
+
+    //Make the random color
+    function rgb() {
+        color = 'rgb(';
+        for (var i = 0; i < 3; i++) {
+            color += Math.floor(Math.random() * 255) + ',';
+        }
+        return color.replace(/\,$/, ')');
+    }
+</script>
+
+</html>

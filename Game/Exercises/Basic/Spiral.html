@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("canvas");
+    let c = canvas.getContext('2d');
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    addEventListener("resize", () => {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+    });
+
+    const Type = {
+        Archimes: 1,
+        Hyperbolic: 2
+    }
+    class Spiral {
+        constructor(x, y, a) {
+            this.x0 = x;
+            this.y0 = y;
+            this.a = a;
+            this.alpha = 0.2;
+            c.beginPath();
+            c.moveTo(x, y);
+        }
+        computerR() {
+            return this.alpha;
+        }
+        draw() {
+            this.alpha += 0.01;
+            let R = this.computerR();
+            let x = this.x0 + R * Math.cos(this.alpha);
+            let y = this.y0 + R * Math.sin(this.alpha);
+            c.lineTo(x, y);
+            c.stroke();
+        }
+    }
+
+    class Archimes extends Spiral{
+        constructor(x,y,a){
+            super(x,y,a);
+        }
+        computerR(){
+            return this.a * this.alpha;
+        }
+    }
+    // class Hyperbolic extends Spiral {
+    //     constructor(x,y,a){
+    //         super(x,y,a);
+    //     }
+    //     computerR(){
+    //         return this.a/this.alpha;
+    //     }
+    //     draw(){
+    //         this.alpha += 0.01;
+    //         let R = this.computerR();
+    //         let x = this.x0 + R * Math.cos(this.alpha);
+    //         let y = this.y0 + R * Math.sin(this.alpha);
+    //         c.lineTo(x, y);
+    //         c.stroke();
+    //     }
+    // }
+    class Logarithmic extends Spiral{
+        constructor(x,y,a,k){
+            super(x,y,a);
+            this.k = k;
+        }
+        computerR(){
+            return this.a * Math.exp(this.k * this.alpha);
+        }
+    }
+    let loga = new Logarithmic(canvas.width / 2, canvas.height / 2, 2,0.1);
+    let myTimer = setInterval(() => {
+        loga.draw();
+    }, 5);
+
+</script>
+
+</html>
