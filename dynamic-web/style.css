@@ -228,3 +228,14 @@ form>*{
     margin-left: 80px;
     padding-left: 5px;
 }
+a{
+    text-decoration: none;
+}
+a:link, a:visited {
+    color: #000;
+    font-weight: normal;
+}
+a:hover{
+    color: blue;
+    font-weight: bold;
+}
