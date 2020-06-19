@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail data</title>
+</head>
+<body>
+    <form method="POST" action="/update">
+        <input type="hidden" id = "id" name = "id" value ="<%=todo._id%>">
+        <input type="text" id = "name" name = "name" value ="<%=todo.name%>">
+        <input type="email" id = "email" name = "email" value ="<%=todo.email%>">
+        <button type="submit">Update data</button>
+    </form>
+
+    <form action ="/delete" method="POST">
+        <input type="hidden" id = "id" name = "id" value ="<%=todo._id%>">
+        
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

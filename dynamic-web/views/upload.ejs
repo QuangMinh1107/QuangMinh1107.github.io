@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Flex revision</title>
+</head>
+
+<body>
+    <nav>
+        <div class="left">
+            <span><i class="fas fa-bars" aria-hidden="true"></i></span>
+            <span><strong>Woel</strong>Fel</span>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Seach...">
+        </div>
+        <div class="right">
+            <div class="pic">
+                <a href=""><img
+                        src="https://thuthuatnhanh.com/wp-content/uploads/2019/04/girl-xinh-han-quoc-kute-580x580.jpg"
+                        alt=""></a>
+            </div>
+            <div class="text">
+                <a href="">Radan Cohem</a>
+            </div>
+            <span><a href=""><i class="fas fa-angle-down"></i></a> </span>
+        </div>
+    </nav>
+    <header>
+        <div class="left">
+            <span class="icon"><i class="fa fa-rocket" aria-hidden="true"></i></span>
+            <span class="text">Text Member<br>Rocket</span>
+        </div>
+        <div class="right">
+            <button class="my-team">My Team</button>
+            <button class="btn-all">All</button>
+        </div>
+    </header>
+    <form action="/list" method="POST">
+        <input type="text" name ="name">
+        <input type="mail" name = "email">
+        <button type="submit">Add card data</button>
+    </form>
+
+    <% for(let i=0;i<todoList.length;i++){ %>
+        <div class = "list">
+            <span><%= todoList[i].name  %></span>
+            <span><%= todoList[i].email  %></span>
+            <a href="/web/<%= todoList[i]._id %>">Detail</a>
+        </div>
+        
+    <% } %>
+
+    
+  
+    <script src="https://kit.fontawesome.com/a6d9c854f8.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
