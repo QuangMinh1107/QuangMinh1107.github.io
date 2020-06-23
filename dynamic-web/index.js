@@ -16,7 +16,9 @@ MongoClient.connect("mongodb://localhost:27017",(err,client)=>{
 
 
 let cards = [
-    { img: "https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook-586x580.jpg", mail: "Park Eh Hye", name: "ehhyepark@gmail.com" },
+    { img: "https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook-586x580.jpg", 
+        mail: "Park Eh Hye", 
+        name: "ehhyepark@gmail.com" },
     { img: "https://thuthuatnhanh.com/wp-content/uploads/2019/07/anh-girl-xinh-facebook-464x580.jpg", mail: "Lam Tran", name: "tranlam.vn" },
     { img: "http://img.gioitre.net//uploads/img/2020/06/gt-5ee3456b5a01e.jpg", mail: "Anh Mai", name: "maianh@gmail.com" },
     { img: "https://zicxa.com/hinh-anh/wp-content/uploads/2020/04/T%E1%BB%95ng-h%E1%BB%A3p-h%C3%ACnh-%E1%BA%A3nh-girl-xinh-Nh%E1%BA%ADt-B%E1%BA%A3n-%C4%91%E1%BA%B9p-nh%E1%BA%A5t-15.jpg", mail: "Sakira Juno", name: "junesakira@gmail.com" },
@@ -59,13 +61,19 @@ app.post("/list", function (req, res) {
 });
 
 app.post("/removeCard",function(req,res){
-    console.log("Request received", req.body);
+    console.log("Remove card received", req.body.name);
     let name = req.body.name;
     cards = cards.filter((element)=>{
         return element.mail!==name;
     });
-    console.log(cards);
-
+    console.log(cards,name);
+    db.collection("list").deleteOne(
+        {name: name}
+    ).then(results =>{
+        console.log(results);
+    }).catch(error=>{
+        console.error(error);
+    });
 });
 
 app.get("/web",function(req,res){
