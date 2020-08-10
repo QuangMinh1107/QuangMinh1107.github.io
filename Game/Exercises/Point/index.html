@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="start">
+        <button id="startGame">Start Game</button>
+    </div>
+    <div class="main">
+        <audio id="ball_hit">
+            <source src="ball.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="end">
+        <p>Congratulation, you complete in <span></span>s</p>
+        <button id="restart">Restart the game</button>
+        <button id="replay">Replay game</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
