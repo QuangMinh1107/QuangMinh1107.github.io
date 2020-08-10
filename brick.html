@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+        }
+        #overboard{
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            transform: translate(-50%,-50%);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        #replay{
+            cursor: pointer;
+            padding: 5px;
+        }
+        #replay:hover{
+            background: #fff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="overboard">
+        <p>Game over! You got <span></span> scores</p>
+        <button id="replay">Click to play again</button>
+    </div>
+</body>
+<script>
+    const btn = document.getElementById('replay');
+    const board = document.getElementById('overboard');
+    const span = document.querySelector('#overboard span');
+    const canvas = document.getElementById("canvas");
+    const c = canvas.getContext('2d');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    let playing = false;
+    let score = 0;
+    let level = 1;
+    //Ball class
+    class Ball {
+        constructor(x, y, radius, dx, dy, color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.dx = dx;
+            this.dy = dy;
+            this.color = color;
+        }
+
+        draw() {
+            c.beginPath();
+            c.fillStyle = this.color;
+            c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            c.fill();
+        }
+
+        update() {
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0)
+                this.dx = -this.dx;
+            else if (this.y - this.radius < 0)
+                this.dy = -this.dy;
+            this.x += this.dx;
+            this.y += this.dy;
+            this.draw();
+        }
+    }
+
+    class Line {
+        constructor(x, y, width, height, color) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.color = color;
+            this.touch = 0;
+        }
+
+        draw() {
+            c.beginPath();
+            c.fillStyle = this.color;
+            c.fillRect(this.x, this.y, this.width, this.height);
+            c.fill();
+        }
+
+        collision(ball) {
+            let rectX = this.x + this.width / 2;
+            let rectY = this.y + this.height / 2;
+            return Math.abs(ball.x - rectX) < ball.radius + this.width / 2 && Math.abs(ball.y - rectY) < ball.radius + this.height / 2;
+        }
+    }
+
+    //Bar class
+    class Bar extends Line {
+        constructor(x, y, width, height, color, dx) {
+            super(x, y, width, height, color);
+            this.dx = dx;
+        }
+
+        // draw() {
+        //     c.beginPath();
+        //     c.fillStyle = this.color;
+        //     c.fillRect(this.x, this.y, this.width, this.height);
+        //     c.fill();
+        // }
+
+        update() {
+            this.x += this.dx;
+            this.draw();
+        }
+    }
+
+    let ball = new Ball(canvas.width / 2, canvas.height / 3, 20, 4, 4, randomColor());
+
+    let bar = new Bar(canvas.width / 2 - 150, canvas.height - 30, 300, 30, 'blue', 20);
+
+    let lines = [];
+
+    let rows = 5, cols = 4;
+
+    function makeLines() {
+        let color = randomColor();
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                let x = j * (250 + 20) + 100;
+                let y = i * (20 + 50) + 50;
+                let line = new Line(x, y, 200, 30, color);
+                lines.push(line);
+            }
+
+        }
+    }
+
+
+    makeLines();
+    //draw Lines
+    function drawLines() {
+        lines.forEach(line => line.draw());
+    }
+
+    addEventListener('keydown', e => {
+        if (playing) {
+            if (e.keyCode === 39) {
+                bar.dx = 50;
+                if (bar.x + bar.width > canvas.width) {
+                    bar.dx = 0;
+                }
+            }
+            if (e.keyCode === 37) {
+                bar.dx = -50;
+                if (bar.x < 0) {
+                    bar.dx = 0;
+                }
+            }
+
+            bar.update();
+        }
+
+    });
+    addEventListener('keyup', e => {
+        bar.dx = 0;
+        bar.update();
+    })
+
+    btn.addEventListener('click',()=>{
+        board.style.display = 'none';
+        lines=[];
+        makeLines();
+        level = 1;
+        score = 0;
+        ball = new Ball(canvas.width / 2, canvas.height / 3, 20, 4, 4, randomColor());
+        animate();
+    })
+
+    function animate() {
+        playing = true;
+        let action = requestAnimationFrame(animate);
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        ball.update();
+        drawLines();
+        bar.draw();
+        scoreBoard();
+        drawLevel();
+        if (bar.collision(ball)) {
+            // ball.dx = -ball.dx;
+            ball.dy = -ball.dy;
+        }
+        lines.forEach((line, index) => {
+            if (line.collision(ball)) {
+                ball.dy = -ball.dy;
+                line.touch++;
+                if (line.touch == level) {
+                    lines.splice(index, 1);
+                    score++;
+                }
+
+
+            }
+
+        });
+        if (ball.y + ball.radius > canvas.height - 1) {
+            window.cancelAnimationFrame(action);
+            board.style.display = 'flex';
+            span.textContent = score;
+            playing = false;
+        }
+
+        if (lines.length == 0) {
+            updateLevel();
+        }
+    }
+    animate();
+
+    //Game score
+    function scoreBoard() {
+        c.beginPath();
+        c.font = '20px sans-serif';
+        c.fillStyle = 'black';
+        c.fillText(`Your score: ${score}`, canvas.width / 2, 20);
+        c.fill();
+
+    }
+
+    //Update level
+    function updateLevel() {
+        makeLines();
+        drawLines();
+        level++;
+        ball.color = randomColor();
+        
+    }
+
+    //Draw level
+    function drawLevel() {
+        c.beginPath();
+        c.font = '20px sans-serif';
+        c.fillStyle = 'black';
+        c.fillText(`Level: ${level}`,10,30)
+        c.fill();
+        c.beginPath();
+        c.strokeStyle = 'black';
+        c.rect(0,0,150,50);
+        c.stroke();
+    }
+
+    //randomColor
+    function randomColor() {
+        return `rgb(${randomNum(0, 255)},${randomNum(0, 255)},${randomNum(0, 255)})`
+    }
+
+    function randomNum(min, max) {
+        return Math.floor(min + Math.random() * (max - min + 1));
+    }
+</script>
+
+</html>
